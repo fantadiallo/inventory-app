@@ -1,0 +1,79 @@
+@use '../../styles/variables.scss' as *;
+
+.logForm {
+  background-color: $light-bg;
+  padding: $spacing-lg;
+  border-radius: $border-radius;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: $font-size-heading;
+    margin-bottom: $spacing-md;
+    color: $text-dark;
+    text-align: center;
+  }
+
+  form {
+    display: grid;
+    gap: $spacing-md;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        font-weight: 600;
+        margin-bottom: $spacing-sm;
+        color: $text-dark;
+      }
+
+      input,
+      select {
+        padding: 0.5rem;
+        border: 1px solid $gray-300;
+        border-radius: $border-radius;
+        font-size: $font-size-base;
+      }
+    }
+
+    .submitBtn {
+      background-color: $primary-color;
+      color: $text-light;
+      padding: 0.75rem;
+      border: none;
+      border-radius: $border-radius;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+}
+
+// Responsive tweaks
+@media (max-width: 576px) {
+  .logForm {
+    padding: $spacing-md;
+
+    form {
+      .form-group {
+        label {
+          font-size: 0.9rem;
+        }
+
+        input {
+          font-size: 0.9rem;
+        }
+      }
+
+      .submitBtn {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
