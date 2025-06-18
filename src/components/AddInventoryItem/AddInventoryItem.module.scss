@@ -1,0 +1,73 @@
+@use '../../styles/variables.scss' as *;
+
+.formContainer {
+  background-color: $light-bg; // Use your theme's light background
+  padding: $spacing-lg;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  max-width: 500px;
+  margin: 2rem auto;
+  font-family: $font-base;
+  width: 100%;
+
+  h2 {
+    font-size: $font-size-heading;
+    margin-bottom: $spacing-md;
+    color: $text-dark;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    input,
+    select {
+      padding: $spacing-sm;
+      border: 1px solid $gray-300;
+      border-radius: $border-radius;
+      font-size: 1rem;
+      background-color: $light-bg;
+      color: $text-dark;
+      width: 100%;
+    }
+
+    button {
+      padding: $spacing-sm;
+      background-color: $primary-color;
+      color: $text-light;
+      font-weight: 600;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background-color: darken($primary-color, 8%);
+      }
+    }
+  }
+
+  // Responsive tweaks
+  @media (max-width: 576px) {
+    padding: $spacing-md;
+
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    form {
+      gap: $spacing-sm;
+
+      input,
+      select {
+        font-size: 0.95rem;
+      }
+
+      button {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}
