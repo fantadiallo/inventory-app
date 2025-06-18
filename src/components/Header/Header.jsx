@@ -1,48 +1,71 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import styles from "./Header.module.scss";
+import { logoutUser } from "../../utils/logout";
 
 /**
  * Header component for the Inventory App.
- * 
- * Renders the application header with navigation links.
- * Includes a responsive menu that toggles for mobile view.
  *
- * State:
- * - menuOpen: Boolean indicating if the mobile menu is open.
- *
- * Functions:
- * - toggleMenu: Toggles the mobile menu open/close.
- * - closeMenu: Closes the mobile menu.
+ * Renders the header with responsive nav and logout/login logic.
  *
  * @component
- * @returns {JSX.Element} The rendered header component.
+ * @returns {JSX.Element}
  */
-export default function Header(){
-    const [menuOpen, setMenuOpen] = useState(false);
-    const toggleMenu = () => setMenuOpen(!menuOpen);
-    const closeMenu = () => setMenuOpen(false);
-    return (
-        <header className="header">
-            <div className="navContainer container d-flex justify-content-between align-items-center">
-                <h1 className="fs-4 m-0">Inventory App</h1>
-                <button className="menuToggle d-md-none" onClick={toggleMenu}>
-                    ☰
-                </button>
-                <nav className="navLinks d-none d-md-flex gap-2">
-                    <Link to="/">Home</Link>
-                    <Link to="/admin">admin
-                    </Link> 
-                </nav>
-            </div>
-            {menuOpen && (
-                <div className="fullscreenMenu">
-                    <button className="closeBtn" onClick={closeMenu}>X</button>
-                    <nav className="mobileNav">
-                        <Link to="/" onClick={closeMenu}>Home</Link>
-                        <Link to="/admin" onClick={closeMenu}>admin</Link>
-                    </nav>
-                </div>
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    setIsLoggedIn(!!user);
+  }, []);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
+
+  const handleLogout = () => {
+    logoutUser();
+    closeMenu();
+    setIsLoggedIn(false);
+    navigate("/login"); // go to login page
+  };
+
+  return (
+    <header className={styles.header}>
+      <div className={`${styles.navContainer} container`}>
+        <h1 className={styles.logo}>Inventory App</h1>
+        <button className={`${styles.menuToggle} d-md-none`} onClick={toggleMenu}>
+          ☰
+        </button>
+
+        <nav className={`${styles.navLinks} d-none d-md-flex`}>
+          <Link to="/">Home</Link>
+          <Link to="/admin">Admin</Link>
+          <Link to="/log-history">Log History</Link>
+          {isLoggedIn ? (
+            <button className={styles.logoutBtn} onClick={handleLogout}>Logout</button>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
+        </nav>
+      </div>
+
+      {menuOpen && (
+        <div className={styles.fullscreenMenu}>
+          <button className={styles.closeBtn} onClick={closeMenu}>X</button>
+          <nav className={styles.mobileNav}>
+            <Link to="/" onClick={closeMenu}>Home</Link>
+            <Link to="/admin" onClick={closeMenu}>Admin</Link>
+            <Link to="/log-history" onClick={closeMenu}>Log History</Link>
+            {isLoggedIn ? (
+              <button className={styles.logoutBtn} onClick={handleLogout}>Logout</button>
+            ) : (
+              <Link to="/login" onClick={closeMenu}>Login</Link>
             )}
-        </header>
-    );
+          </nav>
+        </div>
+      )}
+    </header>
+  );
 }
