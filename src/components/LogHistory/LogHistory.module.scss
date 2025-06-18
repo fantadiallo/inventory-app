@@ -1,0 +1,36 @@
+@use '../../styles/variables.scss' as *;
+
+.logHistory {
+  padding: $spacing-lg;
+  background: $light-bg;
+  color: $text-dark;
+
+  h2 {
+    font-size: $font-size-heading;
+    margin-bottom: $spacing-md;
+  }
+
+  .logList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: $spacing-md;
+  }
+
+  .logItem {
+    background: $gray-100;
+    border: 1px solid $gray-300;
+    padding: $spacing-md;
+    border-radius: $border-radius;
+
+    @media (max-width: 768px) {
+      font-size: 0.9rem;
+    }
+  }
+
+  .logHeader {
+    font-weight: bold;
+    margin-bottom: $spacing-sm;
+  }
+}
