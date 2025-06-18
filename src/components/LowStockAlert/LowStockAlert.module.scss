@@ -1,0 +1,55 @@
+@use '../../styles/variables.scss' as *;
+
+.alertSection {
+  background-color: $light-bg;
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: $spacing-lg;
+}
+
+.heading {
+  font-size: 1.5rem;
+  color: $accent-color;
+  margin-bottom: $spacing-md;
+}
+
+.message {
+  font-style: italic;
+  color: $gray-700;
+}
+
+.alertList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $spacing-sm;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 769px) {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+.alertItem {
+  background: #fff3cd;
+  color: #856404;
+  padding: $spacing-sm;
+  border-left: 4px solid $accent-color;
+  border-radius: $border-radius;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-weight: bold;
+}
+
+.qty {
+  font-size: 0.9rem;
+}
