@@ -1,0 +1,104 @@
+@use '../../styles/variables.scss' as *;
+
+.header {
+  background-color: $dark-bg;
+  color: $text-light;
+  padding: $spacing-md 0;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $text-light;
+}
+
+.menuToggle {
+  font-size: 2rem;
+  color: $text-light;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navLinks {
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    gap: $spacing-md;
+  }
+
+  a {
+    color: $text-light;
+    font-weight: 500;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+}
+
+.fullscreenMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $dark-bg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: $text-light;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+      color: $text-light;
+      font-weight: 500;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+}
+
+.logoutBtn {
+  background-color: transparent;
+  border: 1px solid var(--accent-color);
+  padding: 0.4rem 1rem;
+  border-radius: 0.25rem;
+  color: var(--text-light);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+  }
+}
