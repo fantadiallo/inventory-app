@@ -1,27 +1,27 @@
-:root {
-  /* PRIMARY THEME COLORS */
-  --primary-color: #2a6f97;     // Muted deep blue (main accent)
-  --accent-color: #84a98c;      // Soft sage green (highlights & buttons)
+/* PRIMARY THEME COLORS */
+$primary-color: #2a6f97;     // Muted deep blue (main accent)
+$accent-color: #84a98c;      // Soft sage green (highlights & buttons)
 
-  /* BACKGROUND COLORS */
-  --dark-bg: #1f2937;           // Neutral dark (for header/footer)
-  --light-bg: #f5f7fa;          // Clean off-white background
+/* BACKGROUND COLORS */
+$dark-bg: #1f2937;           // Neutral dark (for header/footer)
+$light-bg: #f5f7fa;          // Clean off-white background
 
-  /* TEXT COLORS */
-  --text-dark: #111827;         // Rich dark gray
-  --text-light: #ffffff;        // Pure white
+/* TEXT COLORS */
+$text-dark: #111827;         // Rich dark gray
+$text-light: #ffffff;        // Pure white
 
-  /* OPTIONAL NEUTRALS */
-  --gray-100: #e5e7eb;          // Light border/shadow
-  --gray-300: #d1d5db;
-  --gray-700: #374151;
+/* OPTIONAL NEUTRALS */
+$gray-100: #e5e7eb;          // Light border/shadow
+$gray-300: #d1d5db;
+$gray-700: #374151;
 
-  /* FONT & SPACING */
-  --font-base: 'Inter', sans-serif;
-  --font-size-base: 1rem;
-  --font-size-heading: 1.75rem;
-  --border-radius: 0.5rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 2rem;
-}
+/* FONT & SPACING */
+$font-base: 'Inter', sans-serif;
+$font-size-base: 1rem;
+$font-size-heading: 1.75rem;
+$border-radius: 0.5rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 2rem;
+
+
