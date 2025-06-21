@@ -1,0 +1,28 @@
+@use "../../styles/variables" as *;
+
+.page {
+  padding: $spacing-lg $spacing-md;
+  min-height: 100vh;
+  background: $light-bg;
+  font-family: $font-base;
+  color: $text-dark;
+}
+
+.heading {
+  font-size: $font-size-heading;
+  margin-bottom: $spacing-md;
+  text-align: center;
+  color: $primary-color;
+}
+
+.orderList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: $spacing-md;
+}
+
+.empty {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: $spacing-lg;
+}
