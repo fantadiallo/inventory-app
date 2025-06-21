@@ -1,0 +1,42 @@
+@use "../../styles/variables.scss" as *;
+
+.tableWrapper {
+  overflow-x: auto;
+  margin-bottom: $spacing-lg;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $light-bg;
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  th, td {
+    padding: 0.75rem 1rem;
+    border: 1px solid $gray-100;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    background-color: $primary-color;
+    color: $text-light;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  td {
+    color: $text-dark;
+    font-size: 0.95rem;
+
+    ul {
+      margin: 0;
+      padding-left: 1rem;
+    }
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+}
