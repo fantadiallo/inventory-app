@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import styles from "./AdminGate.module.scss";
 
 export default function AdminGate({ children }) {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -24,19 +25,22 @@ export default function AdminGate({ children }) {
 
   if (!isAuthorized) {
     return (
-      <div className="admin-gate">
-        <h2>Enter 6-digit business code</h2>
-        <form onSubmit={handleCodeCheck}>
+      <div className={styles.adminGate}>
+        <h2>Enter 6-digit admin code</h2>
+        <form onSubmit={handleCodeCheck} className={styles.form}>
           <input
             type="text"
             value={inputCode}
             onChange={(e) => setInputCode(e.target.value)}
             maxLength={6}
             placeholder="XXXXXX"
+            className={styles.input}
           />
-          <button type="submit">Unlock Admin</button>
+          <button type="submit" className={styles.button}>
+            Unlock
+          </button>
         </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p className={styles.error}>{error}</p>}
       </div>
     );
   }
