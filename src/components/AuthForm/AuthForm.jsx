@@ -1,121 +1,139 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styles from "./Auth.module.scss";
+import { useEffect, useState } from "react";
 import { supabase } from "../../supabse/client";
+import styles from "./AuthForm.module.scss";
 
 export default function AuthForm() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [form, setForm] = useState({ email: "", password: "", name: "", code: "" });
+  const [mode, setMode] = useState("login");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [businessName, setBusinessName] = useState("");
+  const [adminCode, setAdminCode] = useState("");
   const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
 
-    if (!form.email || !form.password || (!isLogin && (!form.name || !form.code))) {
-      setError("Fill all required fields");
-      return;
+    if (!email || !password || (mode === "register" && !businessName)) {
+      return setError("Please fill in all fields.");
     }
 
-    try {
-      if (isLogin) {
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email: form.email,
-          password: form.password,
-        });
-        if (error) throw error;
-        localStorage.setItem("user", JSON.stringify(data.user));
-        navigate("/");
-      } else {
-        const { data, error } = await supabase.auth.signUp({
-          email: form.email,
-          password: form.password,
-        });
-        if (error) throw error;
-
-        await supabase.from("businesses").insert({
-          user_email: form.email,
-          business_name: form.name,
-          business_code: form.code,
-        });
-
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("business_code", form.code);
-        navigate("/");
+    if (mode === "register") {
+      if (adminCode.length !== 6) {
+        return setError("Admin code must be 6 digits.");
       }
-    } catch (err) {
-      setError(err.message);
+
+      const { data: business, error: businessError } = await supabase
+        .from("businesses")
+        .insert([{ name: businessName, admin_code: adminCode }])
+        .select()
+        .single();
+
+      if (businessError) return setError(businessError.message);
+
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: {
+            business_id: business.id,
+            is_admin: true,
+          },
+        },
+      });
+
+      if (signUpError) return setError(signUpError.message);
+      alert("Registered! Please check your email to confirm.");
+    } else {
+      const { data, error: loginError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (loginError) return setError(loginError.message);
+
+      const user = data.user;
+      const { business_id } = user.user_metadata;
+      if (!business_id) return setError("No business assigned.");
+
+      const { data: business } = await supabase
+        .from("businesses")
+        .select("admin_code")
+        .eq("id", business_id)
+        .single();
+
+      const is_admin = adminCode === business.admin_code;
+
+      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("is_admin", is_admin);
+      localStorage.setItem("business_id", business_id);
+      alert("Logged in!");
     }
   }
 
   return (
-    <form className={styles.authForm} onSubmit={handleSubmit}>
-      <h2>{isLogin ? "Login" : "Register"}</h2>
+    <section className={styles.authContainer}>
+      <div className={styles.toggle}>
+        <button
+          className={mode === "login" ? styles.active : ""}
+          onClick={() => setMode("login")}
+        >
+          Login
+        </button>
+        <button
+          className={mode === "register" ? styles.active : ""}
+          onClick={() => setMode("register")}
+        >
+          Register
+        </button>
+      </div>
 
-      {!isLogin && (
-        <>
-          <div className={styles.formGroup}>
-            <label>Business Name</label>
-            <input
-              name="name"
-              placeholder="Business Name"
-              value={form.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className={styles.formGroup}>
-            <label>6-digit Business Code</label>
-            <input
-              name="code"
-              placeholder="Business Code"
-              value={form.code}
-              onChange={handleChange}
-              required
-              maxLength={6}
-            />
-          </div>
-        </>
-      )}
-
-      <div className={styles.formGroup}>
-        <label>Email</label>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input
-          name="email"
           type="email"
           placeholder="Email"
-          value={form.email}
-          onChange={handleChange}
-          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-      </div>
-
-      <div className={styles.formGroup}>
-        <label>Password</label>
         <input
-          name="password"
           type="password"
           placeholder="Password"
-          value={form.password}
-          onChange={handleChange}
-          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-      </div>
 
-      <button type="submit" className={styles.submitBtn}>
-        {isLogin ? "Login" : "Register"}
-      </button>
+        {mode === "register" && (
+          <>
+            <input
+              type="text"
+              placeholder="Business Name"
+              value={businessName}
+              onChange={(e) => setBusinessName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="6-digit Admin Code"
+              value={adminCode}
+              onChange={(e) => setAdminCode(e.target.value)}
+              maxLength={6}
+            />
+          </>
+        )}
 
-      <p className={styles.toggleLink} onClick={() => setIsLogin(!isLogin)}>
-        {isLogin ? "Don't have an account? Register" : "Already have an account? Login"}
-      </p>
+        {mode === "login" && (
+          <input
+            type="text"
+            placeholder="6-digit Admin Code (if admin)"
+            value={adminCode}
+            onChange={(e) => setAdminCode(e.target.value)}
+            maxLength={6}
+          />
+        )}
 
-      {error && <p className={styles.errorMessage}>{error}</p>}
-    </form>
+        {error && <p className={styles.error}>{error}</p>}
+
+        <button type="submit">{mode === "login" ? "Login" : "Register"}</button>
+      </form>
+    </section>
   );
 }
