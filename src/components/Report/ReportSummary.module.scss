@@ -1,0 +1,31 @@
+@use "../../styles/variables.scss" as *;
+
+.summarySection {
+  background-color: $light-bg;
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: $spacing-lg;
+
+  h3 {
+    font-size: $font-size-heading;
+    margin-bottom: $spacing-sm;
+    color: $text-dark;
+  }
+
+  p {
+    font-size: 1rem;
+    margin-bottom: $spacing-sm;
+    color: $text-dark;
+  }
+
+  ul {
+    padding-left: 1rem;
+    list-style-type: disc;
+    color: $text-dark;
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+  }
+}
