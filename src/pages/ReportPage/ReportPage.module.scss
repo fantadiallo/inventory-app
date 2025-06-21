@@ -1,0 +1,38 @@
+@use "../../styles/variables.scss" as *;
+
+.reportPage {
+  padding: $spacing-lg $spacing-md;
+  background-color: $light-bg;
+  min-height: 100vh;
+
+  h2 {
+    font-size: $font-size-heading;
+    color: $primary-color;
+    margin-bottom: $spacing-md;
+  }
+
+  section {
+    background-color: #fff;
+    padding: $spacing-md;
+    border-radius: $border-radius;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    margin-bottom: $spacing-lg;
+  }
+
+  @media (max-width: 600px) {
+    padding: $spacing-md;
+
+    section {
+      padding: $spacing-sm;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+}
+.reportPage {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
