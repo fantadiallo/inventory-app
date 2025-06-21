@@ -1,0 +1,59 @@
+@use "../../../styles/variables" as *;
+
+.formWrapper {
+  background-color: $light-bg;
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  font-family: $font-base;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tableInput {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: $font-size-base;
+  margin-bottom: $spacing-md;
+  border: 2px solid $gray-100;
+  border-radius: $border-radius;
+  background: white;
+}
+
+.menuGrid {
+  display: grid;
+  gap: $spacing-sm;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  margin-bottom: $spacing-lg;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: $spacing-md;
+  background-color: $primary-color;
+  color: $text-light;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: $border-radius;
+  cursor: pointer;
+  margin-top: $spacing-md;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken($primary-color, 8%);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (max-width: 600px) {
+  .menuGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .submitBtn {
+    font-size: 1rem;
+  }
+}
