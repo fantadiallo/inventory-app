@@ -1,0 +1,76 @@
+@use '../../styles/variables.scss' as *;
+
+.authContainer {
+  max-width: 400px;
+  margin: auto;
+  padding: $spacing-lg;
+  background-color: $light-bg;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 480px) {
+    padding: $spacing-md;
+  }
+}
+
+.toggle {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+
+  button {
+    padding: 0.5rem 1rem;
+    background-color: transparent;
+    border: 1px solid $gray-300;
+    color: $text-dark;
+    cursor: pointer;
+    border-radius: $border-radius;
+
+    &.active {
+      background-color: $primary-color;
+      color: white;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  input,
+  select {
+    padding: 0.6rem;
+    border: 1px solid $gray-300;
+    border-radius: $border-radius;
+    font-size: $font-size-base;
+  }
+
+  button[type="submit"] {
+    padding: 0.6rem;
+    background-color: $accent-color;
+    color: white;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: darken($accent-color, 10%);
+    }
+  }
+}
+
+.roleLabel {
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  color: $text-dark;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+}
