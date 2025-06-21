@@ -1,0 +1,51 @@
+@use "../../styles/variables" as *;
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: $font-base;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  border-radius: $border-radius;
+  overflow: hidden;
+
+  th, td {
+    padding: $spacing-sm;
+    border-bottom: 1px solid $gray-100;
+    text-align: left;
+  }
+
+  th {
+    background: $gray-100;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  td {
+    font-size: 0.95rem;
+  }
+
+  input[type="checkbox"] {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}
+
+.deleteBtn {
+  background: none;
+  color: red;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.empty {
+  padding: $spacing-md;
+  text-align: center;
+  font-size: 1rem;
+  color: $text-dark;
+}
