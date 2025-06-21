@@ -1,0 +1,32 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: #fff;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  font-size: 1.1rem;
+  cursor: pointer;
+  min-height: 100px;
+  width: 100%;
+  transition: transform 0.1s;
+}
+
+.card:active {
+  transform: scale(0.97);
+  border-color: #ccc;
+}
+
+.name {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  text-align: center;
+}
+
+.price {
+  font-size: 0.9rem;
+  color: #333;
+}
