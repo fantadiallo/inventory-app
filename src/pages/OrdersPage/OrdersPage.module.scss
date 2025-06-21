@@ -1,0 +1,34 @@
+@use "../../styles/variables" as *;
+
+.pageWrapper {
+  background-color: $light-bg;
+  padding: $spacing-lg $spacing-md;
+  min-height: 100vh;
+  font-family: $font-base;
+  color: $text-dark;
+}
+
+.heading {
+  font-size: $font-size-heading;
+  margin-bottom: $spacing-md;
+  color: $primary-color;
+  text-align: center;
+}
+
+.section {
+  margin-top: $spacing-lg;
+}
+
+.recentOrders {
+  margin-top: $spacing-lg;
+}
+
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding: $spacing-md;
+  }
+
+  .heading {
+    font-size: 1.5rem;
+  }
+}
