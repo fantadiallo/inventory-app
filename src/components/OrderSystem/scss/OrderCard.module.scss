@@ -1,0 +1,56 @@
+@use "../../../styles/variables" as *;
+
+.card {
+  background: white;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  margin-bottom: $spacing-md;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  font-family: $font-base;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+}
+
+.total {
+  font-weight: bold;
+  color: $primary-color;
+}
+
+.items {
+  list-style: none;
+  padding-left: 1rem;
+  margin-bottom: $spacing-sm;
+}
+
+.note {
+  background: $gray-100;
+  padding: $spacing-sm;
+  border-radius: $border-radius;
+  font-style: italic;
+  margin-bottom: $spacing-sm;
+}
+
+.doneBtn {
+  width: 100%;
+  padding: $spacing-sm;
+  background: $accent-color;
+  color: $text-light;
+  border: none;
+  border-radius: $border-radius;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    background: darken($accent-color, 8%);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
