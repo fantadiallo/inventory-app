@@ -1,0 +1,50 @@
+.wrapper {
+  margin-top: 1rem;
+  background: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.controls button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.1rem;
+}
+
+.remove {
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 1.3rem;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.total {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: right;
+}
