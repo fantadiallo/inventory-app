@@ -1,0 +1,26 @@
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 0.6rem 1rem;
+  background-color: #eee;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tab:active {
+  transform: scale(0.97);
+}
+
+.active {
+  background-color: #007bff;
+  color: white;
+}
