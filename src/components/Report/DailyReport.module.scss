@@ -1,0 +1,94 @@
+@use "../../styles/variables.scss" as *;
+
+.reportWrapper {
+  padding: $spacing-lg;
+  background-color: $light-bg;
+  color: $text-dark;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: $font-base;
+
+  @media (max-width: 768px) {
+    padding: $spacing-md;
+  }
+
+  h2 {
+    font-size: $font-size-heading;
+    margin-bottom: $spacing-md;
+    color: $primary-color;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-sm;
+    color: $accent-color;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+    color: $text-dark;
+
+    input[type="date"] {
+      margin-left: $spacing-sm;
+      padding: $spacing-sm;
+      border: 1px solid $gray-300;
+      border-radius: $border-radius;
+      background-color: white;
+      color: $text-dark;
+    }
+  }
+
+  .summary {
+    margin-top: $spacing-md;
+    font-size: $font-size-base;
+
+    p {
+      margin-bottom: $spacing-sm;
+      color: $text-dark;
+    }
+  }
+
+  .actions {
+    margin-top: $spacing-md;
+    display: flex;
+    gap: $spacing-sm;
+    flex-wrap: wrap;
+
+    button {
+      padding: 0.5rem 1rem;
+      background-color: $accent-color;
+      color: $text-light;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken($accent-color, 10%);
+      }
+    }
+  }
+
+  ul {
+    margin-top: $spacing-sm;
+    padding-left: 1.25rem;
+    font-size: 0.95rem;
+    color: $text-dark;
+
+    li {
+      margin-bottom: 0.4rem;
+      list-style-type: disc;
+    }
+  }
+
+  hr {
+    margin: $spacing-lg 0;
+    border: none;
+    border-top: 1px solid $gray-100;
+  }
+}
+
